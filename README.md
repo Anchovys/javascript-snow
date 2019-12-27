@@ -8,4 +8,4 @@ Add
 <script src="snow.js"></script>
 ````
 
-To <head> tag
+To HEAD tag
