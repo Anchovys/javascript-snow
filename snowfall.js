@@ -12,34 +12,33 @@ class snowObject {
 	// init snow
 	constructor (elementId, entity) {
 		this.size = Math.floor(5 * Math.random()) + 10;
-		this.element = document.createElement("span");
+		this.element = document.createElement('span');
 		this.element.appendChild(document.createTextNode(entity));
-		this.element.id = "flake_" + elementId;
+		this.element.id = 'flake_' + elementId;
 
 		this.element.style.position = 'absolute';
 		this.element.style.zIndex = 100;
-		this.element.style.color = "#fff";
-		this.element.style.fontSize = this.size + "px";
-
+		this.element.style.color = '#fff';
+		this.element.style.fontSize = this.size + 'px';
+		this.element.style.cursor = 'default';
+		this.element.style.userSelect = 'none';
 		this.resetPosition();
 		document.body.appendChild(this.element);
 	}
-	
 	// reset position (random)
 	resetPosition () {
 		this.positionX = Math.floor(documentSizes[0] * Math.random());
 		this.positionY = Math.random() * documentSizes[1];
 		this.pos = 0;
 	}
-	
-	// random move snow 
+	// random move snow
 	randomMove () {
 		this.pos++;
 		this.positionX += 2 * Math.random() * Math.sin(this.pos);
 		this.positionY += Math.random() * 10;
 
-		this.element.style.left = this.positionX + "px";
-		this.element.style.top 	= this.positionY + "px";
+		this.element.style.left = this.positionX + 'px';
+		this.element.style.top 	= this.positionY + 'px';
 
 		if(this.positionY > documentSizes[1] - 100 || this.positionX < 0 || 
 		   this.positionX > (documentSizes[0] - (this.size * 2))) {
@@ -60,7 +59,7 @@ function moveSnow() {
 		objects[item].randomMove();
 	}
 
-	setTimeout("moveSnow()", speed);
+	setTimeout('moveSnow()', speed);
 }
 	// init snow
 function init() {
