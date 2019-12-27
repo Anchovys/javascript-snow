@@ -4,8 +4,6 @@
  */
 
 const snowMax = 50;
-var snowEntity = "•";
-
 var objects = [];
 var documentSizes = [];
 
@@ -60,7 +58,8 @@ function moveSnow() {
 	for (var item in objects) {
 			objects[item].randomMove();
 	}
-
+	
+	//50 ms sleep
 	setTimeout("moveSnow()", 50);
 }
 
