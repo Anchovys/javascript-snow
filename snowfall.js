@@ -3,7 +3,8 @@
  * (C), Anchovy, 12.2019
  */
 
-const snowMax = 50;
+const speed = 50;	// 50 ms sleep
+const snowMax = 50;     // flake counts
 var objects = [];
 var documentSizes = [];
 
@@ -21,18 +22,18 @@ class snowObject {
 		this.element.style.fontSize = this.size + "px";
 
 		this.resetPosition();
-
 		document.body.appendChild(this.element);
 	}
-
+	
+	// reset position (random)
 	resetPosition () {
 		this.positionX = Math.floor(documentSizes[0] * Math.random());
 		this.positionY = Math.random() * documentSizes[1];
 		this.pos = 0;
 	}
-
+	
+	// random move snow 
 	randomMove () {
-
 		this.pos++;
 		this.positionX += 2 * Math.random() * Math.sin(this.pos);
 		this.positionY += Math.random() * 10;
@@ -40,40 +41,38 @@ class snowObject {
 		this.element.style.left = this.positionX + "px";
 		this.element.style.top 	= this.positionY + "px";
 
-		if(this.positionY > documentSizes[1] - 100 || this.positionX < 0 || this.positionX > (documentSizes[0] - (this.size * 2))) {
+		if(this.positionY > documentSizes[1] - 100 || this.positionX < 0 || 
+		   this.positionX > (documentSizes[0] - (this.size * 2))) {
 			this.pos = 0;
 			this.positionY = 0;
 		}
 	}
 }
 
+	// on screen resize
 function resize() {
-
 	documentSizes[0] = document.body.clientWidth;
 	documentSizes[1] = document.body.scrollHeight;
-
 }
-
+	// move all flakes
 function moveSnow() {
 	for (var item in objects) {
-			objects[item].randomMove();
+		objects[item].randomMove();
 	}
-	
-	//50 ms sleep
-	setTimeout("moveSnow()", 50);
+
+	setTimeout("moveSnow()", speed);
 }
-
+	// init snow
 function init() {
-	onresize();
-
+	onresize(); // keep screen size
+	// create all flake objects
 	for (i = 0; i <= snowMax; i++) {
 		objects[i] = new snowObject(i, '•');
-
 	}
-
+	// starts recursive move
 	moveSnow();
 }
 
-
+// make events
 window.onresize = resize;
 window.onload 	= init;
