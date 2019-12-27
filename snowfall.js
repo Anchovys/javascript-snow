@@ -3,15 +3,19 @@
  * (C), Anchovy, 12.2019
  */
 
-const speed = 50;	// 50 ms sleep
-const snowMax = 50;     // flake counts
+const speed = 50;		// 50 ms sleep
+const snowMax = 50;     	// flakes count
+const minSize = 10;		// min flake size
+const maxSize = 15;     	// max flake size
+const flakeSymbol = '•';  	// symbol (default - bullet (•))
+
 var objects = [];
 var documentSizes = [];
 
 class snowObject {
 	// init snow
 	constructor (elementId, entity) {
-		this.size = Math.floor(5 * Math.random()) + 10;
+		this.size = Math.floor(maxSize - minSize * Math.random()) + minSize;
 		this.element = document.createElement('span');
 		this.element.appendChild(document.createTextNode(entity));
 		this.element.id = 'flake_' + elementId;
@@ -20,7 +24,7 @@ class snowObject {
 		this.element.style.zIndex = 100;
 		this.element.style.color = '#fff';
 		this.element.style.fontSize = this.size + 'px';
-		this.element.style.cursor = 'default';
+		this.element.style.cursor = body.style.cursor;
 		this.element.style.userSelect = 'none';
 		this.resetPosition();
 		document.body.appendChild(this.element);
@@ -66,7 +70,7 @@ function init() {
 	onresize(); // keep screen size
 	// create all flake objects
 	for (i = 0; i <= snowMax; i++) {
-		objects[i] = new snowObject(i, '•');
+		objects[i] = new snowObject(i, flakeSymbol);
 	}
 	// starts recursive move
 	moveSnow();
