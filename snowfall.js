@@ -40,9 +40,9 @@ class snowObject {
 		this.element.style.left = this.positionX + 'px';
 		this.element.style.top 	= this.positionY + 'px';
 
-		if(this.positionY > documentSizes[1] - 100 || this.positionX < 0 || 
+		if(this.positionY > documentSizes[1] - 100 || this.positionX < 0 ||
 		   this.positionX > (documentSizes[0] - (this.size * 2))) {
-			this.pos = 0;
+			this.resetPosition();
 			this.positionY = 0;
 		}
 	}
