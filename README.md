@@ -5,7 +5,7 @@ Using
 
 Add
 ````
-<script src="snow.js"></script>
+<script src="./snowfall.js"></script>
 ````
 
 To HEAD tag
