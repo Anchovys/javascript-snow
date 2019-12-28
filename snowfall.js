@@ -3,9 +3,9 @@
  * (C), Anchovy, 12.2019
  */
 
-const speed = 50;			// 50 ms sleep
+const speed = 50;		// 50 ms sleep
 const snowMax = 50;     	// flakes count
-const minSize = 10;			// min flake size
+const minSize = 10;		// min flake size
 const maxSize = 15;     	// max flake size
 const flakeSymbol = '•';  	// symbol (default - bullet (•))
 
@@ -25,7 +25,9 @@ class snowObject {
 		this.element.style.color = '#fff';
 		this.element.style.fontSize = this.size + 'px';
 		this.element.style.userSelect = 'none';
+		
 		this.resetPosition();
+		
 		document.body.appendChild(this.element);
 	}
 	// reset position (random)
