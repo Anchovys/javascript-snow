@@ -44,14 +44,12 @@ class snowObject {
 			this.pos++;
 			this.positionX += 2 * Math.random() * Math.sin(this.pos);
 			this.positionY += Math.random() * 10;
+			
+			this.element.style.left = this.positionX + 'px';
+			this.element.style.top 	= this.positionY + 'px';
 		}
-
-		this.element.style.left = this.positionX + 'px';
-		this.element.style.top 	= this.positionY + 'px';
-
 	}
 }
-
 	// on screen resize
 function resize() {
 	documentSizes[0] = document.body.clientWidth;
